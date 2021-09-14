@@ -15,6 +15,8 @@ public class PlayerShotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward * speed * Time.deltaTime);
+        //gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward * speed * Time.deltaTime);
+        gameObject.GetComponent<Rigidbody>().AddForce(-gameObject.transform.forward * speed * Time.deltaTime);
+
     }
 }
