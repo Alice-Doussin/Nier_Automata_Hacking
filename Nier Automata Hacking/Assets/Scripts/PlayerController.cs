@@ -9,9 +9,16 @@ public class PlayerController : MonoBehaviour
     float speed;
     [SerializeField]
     float rotationSpeed;
+    [SerializeField]
+    float shotCooldownMax;
+    float shotCooldown;
+    [SerializeField]
+    GameObject playerShot;
+    [SerializeField]
+    GameObject shotSpawner;
     void Start()
     {
-        
+        shotCooldown = 0;
     }
 
     // Update is called once per frame
@@ -33,9 +40,18 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * speed * Time.deltaTime);
         }
+        if(Input.GetAxis("Mouse X")>0.1 || Input.GetAxis("Mouse X") < -0.1 || Input.GetAxis("Mouse Y") > 0.1 || Input.GetAxis("Mouse Y") < -0.1)
+        {
+            gameObject.GetComponent<Rigidbody>().rotation = Quaternion.Lerp(gameObject.GetComponent<Rigidbody>().rotation, Quaternion.Euler(new Vector3(0, Mathf.Atan2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 180 / Mathf.PI + 90, 0)), Time.deltaTime * rotationSpeed);
+            
+        }
 
-        gameObject.GetComponent<Rigidbody>().rotation = Quaternion.Lerp(gameObject.GetComponent<Rigidbody>().rotation, Quaternion.Euler(new Vector3(0, Mathf.Atan2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 180 / Mathf.PI + 90, 0)), Time.deltaTime * rotationSpeed);
-        //Quaternion.Euler(new Vector3(0, Mathf.Atan2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 180/Mathf.PI +90, 0));
+        if(Input.GetAxis("Fire1")>0.1&&shotCooldown<=0)
+        {
+            Instantiate(playerShot, shotSpawner.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
+            shotCooldown = shotCooldownMax;
+        }
 
+            shotCooldown -= Time.deltaTime;
     }
 }
