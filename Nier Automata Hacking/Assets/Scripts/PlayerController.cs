@@ -16,6 +16,16 @@ public class PlayerController : MonoBehaviour
     GameObject playerShot;
     [SerializeField]
     GameObject shotSpawner;
+    public int lives;
+    [SerializeField]
+    GameObject leftPart;
+    [SerializeField]
+    GameObject rightPart;
+    [SerializeField]
+    GameObject frontPart;
+    [SerializeField]
+    float hitCooldownMax;
+    float hitCooldown;
     void Start()
     {
         shotCooldown = 0;
@@ -42,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetAxis("Mouse X")>0.1 || Input.GetAxis("Mouse X") < -0.1 || Input.GetAxis("Mouse Y") > 0.1 || Input.GetAxis("Mouse Y") < -0.1)
         {
-            gameObject.GetComponent<Rigidbody>().rotation = Quaternion.Lerp(gameObject.GetComponent<Rigidbody>().rotation, Quaternion.Euler(new Vector3(0, Mathf.Atan2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 180 / Mathf.PI + 90, 0)), Time.deltaTime * rotationSpeed);
+            gameObject.GetComponent<Rigidbody>().MoveRotation( Quaternion.Lerp(gameObject.GetComponent<Rigidbody>().rotation, Quaternion.Euler(new Vector3(0, Mathf.Atan2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 180 / Mathf.PI + 90, 0)), Time.deltaTime * rotationSpeed));
             
         }
 
@@ -52,6 +62,30 @@ public class PlayerController : MonoBehaviour
             shotCooldown = shotCooldownMax;
         }
 
-            shotCooldown -= Time.deltaTime;
+        shotCooldown -= Time.deltaTime;
+        hitCooldown -= Time.deltaTime;
+
+        if(lives<=2)
+        {
+            Destroy(leftPart);
+        }
+        if(lives<=1)
+        {
+            Destroy(rightPart);
+        }
+        if (lives <= 0)
+        {
+            Destroy(frontPart);
+        }
+    }
+
+    public void GotHit()
+    {
+        if (hitCooldown <= 0)
+        {
+            lives--;
+            hitCooldown = hitCooldownMax;
+        }
+        
     }
 }

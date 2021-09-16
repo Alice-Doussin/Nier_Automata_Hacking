@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShinyWhite
+  m_Name: ShinyOrange
   m_Shader: {fileID: -6465566751694194690, guid: a9980092cfaa4a24fabb5233e839001f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -89,10 +89,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2132b3116042479180b1620f6b539377: 0.5
+    - Vector1_2132b3116042479180b1620f6b539377: 0
     - Vector1_90471a99032e43f3b84d2ef760d9cb6b: 0
     - Vector1_9aff5dd070ad4e689db9e6c786b8c858: 1
-    - Vector1_d76077e4a5af4323aba2e3cf66df67ff: 29.4
+    - Vector1_d76077e4a5af4323aba2e3cf66df67ff: 1.49
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -120,8 +120,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_33b9dd0ccbec4463ba2e9e5d5e0ab36b: {r: 1, g: 0.86206895, b: 0, a: 0}
-    - Color_e71661f054cc4860be3332c0772663b8: {r: 1, g: 0.8202744, b: 0.2396226, a: 1}
+    - Color_33b9dd0ccbec4463ba2e9e5d5e0ab36b: {r: 1, g: 0.23483951, b: 0, a: 0}
+    - Color_e71661f054cc4860be3332c0772663b8: {r: 0.6415094, g: 0.24654089, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
