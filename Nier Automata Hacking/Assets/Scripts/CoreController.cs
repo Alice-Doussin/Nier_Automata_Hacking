@@ -19,6 +19,8 @@ public class CoreController : MonoBehaviour
     float curYRot;
     [SerializeField]
     public int lives;
+    [SerializeField]
+    GameObject gameController;
 
     // Start is called before the first frame update
     void Start()
@@ -29,29 +31,38 @@ public class CoreController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(shotCooldown<=0)
+        if (gameController.GetComponent<GameController>().isGamePlaying)
         {
-            Instantiate(OrangeShot, CoreSpawner.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
-            shotCooldown = shotCooldownMax;
-        }
-        shotCooldown -= Time.deltaTime;
-        curYRot += rotationSpeed * Time.deltaTime;
-        gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(new Vector3(0, curYRot, 0)));
+            if (shotCooldown <= 0)
+            {
+                Instantiate(OrangeShot, CoreSpawner.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
+                shotCooldown = shotCooldownMax;
+            }
+            shotCooldown -= Time.deltaTime;
+            curYRot += rotationSpeed * Time.deltaTime;
+            gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(new Vector3(0, curYRot, 0)));
 
-        if(lives<=0)
-        {
-            Destroy(gameObject);
+            if (lives <= 0)
+            {
+                gameController.GetComponent<GameController>().isGamePlaying = false;
+                gameController.GetComponent<GameController>().isInMenus = true;
+                gameController.GetComponent<GameController>().GoToNextLevel();
+                Destroy(gameObject);
+            }
         }
-        
-        
+
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PlayerShot")
+        if (gameController.GetComponent<GameController>().isGamePlaying)
         {
-            lives--;
+            if (other.gameObject.tag == "PlayerShot")
+            {
+                lives--;
+            }
         }
+        
     }
 }
