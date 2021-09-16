@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerShot
+  - OrangeShot
+  - PurpleShot
+  - Core
   layers:
   - Default
   - TransparentFX

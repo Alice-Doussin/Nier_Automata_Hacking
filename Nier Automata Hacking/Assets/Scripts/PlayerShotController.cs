@@ -29,7 +29,7 @@ public class PlayerShotController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "OrangeShot")
+        if (other.gameObject.tag == "OrangeShot" || other.gameObject.tag == "Core")
         {
             Destroy(gameObject);
         }
