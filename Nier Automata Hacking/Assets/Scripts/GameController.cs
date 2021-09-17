@@ -9,14 +9,22 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Animator MenuAnimator;
     [SerializeField]
-    GameObject TitleScreen;
+    AudioClip beginEnterPasswordSound;
+    [SerializeField]
+    AudioClip typingSound;
+    [SerializeField]
+    AudioClip levelBeginSound;
+    [SerializeField]
+    AudioClip popUpSound;
     public int level;
+    bool hasTypingSoundPlayed;
     // Start is called before the first frame update
     void Start()
     {
         isGamePlaying = false;
         isInMenus = true;
         level = 1;
+        hasTypingSoundPlayed = false;
     }
 
     // Update is called once per frame
@@ -27,7 +35,20 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 MenuAnimator.SetBool("TypingCode", true);
+                gameObject.GetComponent<AudioSource>().clip = beginEnterPasswordSound;
+                gameObject.GetComponent<AudioSource>().Play();
             }
+            if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("Title_validation"))
+            {
+                if(hasTypingSoundPlayed==false)
+                {
+                    gameObject.GetComponent<AudioSource>().clip = typingSound;
+                    gameObject.GetComponent<AudioSource>().Play();
+                    hasTypingSoundPlayed = true;
+                }
+                
+            }
+
         }
         
         if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeginHackingText"))

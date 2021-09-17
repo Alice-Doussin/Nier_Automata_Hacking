@@ -21,6 +21,10 @@ public class CoreController : MonoBehaviour
     public int lives;
     [SerializeField]
     GameObject gameController;
+    [SerializeField]
+    AudioClip CoreHitSound;
+    [SerializeField]
+    AudioClip CoreExplodeSound;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,7 @@ public class CoreController : MonoBehaviour
     {
         if (gameController.GetComponent<GameController>().isGamePlaying)
         {
+            
             if (shotCooldown <= 0)
             {
                 Instantiate(OrangeShot, CoreSpawner.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
@@ -44,10 +49,12 @@ public class CoreController : MonoBehaviour
 
             if (lives <= 0)
             {
+                gameObject.GetComponent<AudioSource>().clip = CoreExplodeSound;
+                gameObject.GetComponent<AudioSource>().Play();
                 gameController.GetComponent<GameController>().isGamePlaying = false;
                 gameController.GetComponent<GameController>().isInMenus = true;
                 gameController.GetComponent<GameController>().GoToNextLevel();
-                Destroy(gameObject);
+                Destroy(gameObject,gameObject.GetComponent<AudioSource>().clip.length-0.7f);
             }
         }
 
@@ -61,6 +68,8 @@ public class CoreController : MonoBehaviour
             if (other.gameObject.tag == "PlayerShot")
             {
                 lives--;
+                gameObject.GetComponent<AudioSource>().clip = CoreHitSound;
+                gameObject.GetComponent<AudioSource>().Play();
             }
         }
         
