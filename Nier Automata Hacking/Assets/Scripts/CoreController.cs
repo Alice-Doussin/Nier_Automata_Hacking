@@ -25,6 +25,7 @@ public class CoreController : MonoBehaviour
     AudioClip CoreHitSound;
     [SerializeField]
     AudioClip CoreExplodeSound;
+    public ParticleSystem Hit_particles;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,7 @@ public class CoreController : MonoBehaviour
                 lives--;
                 gameObject.GetComponent<AudioSource>().clip = CoreHitSound;
                 gameObject.GetComponent<AudioSource>().Play();
+                Hit_particles.Play();
             }
         }
         
