@@ -316,11 +316,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc86487a2cba5b04f8df8129a30f4464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 10
+  lives: 3
   gameController: {fileID: 0}
   WallHitSound: {fileID: 8300000, guid: 819fb2a08570f5f41b34660094bebcc3, type: 3}
   WallExplodeSound: {fileID: 8300000, guid: 54e9f937e66e4524aac66fdad24b991e, type: 3}
   hitCooldownMax: 0
+  hitWhite: {fileID: 0}
+  feedbackCooldownMax: 0
 --- !u!82 &2105553911871025582
 AudioSource:
   m_ObjectHideFlags: 0

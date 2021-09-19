@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Animator MenuAnimator;
     [SerializeField]
-    AudioClip beginEnterPasswordSound;
+    AudioClip buttonPressedSound;
     [SerializeField]
     AudioClip typingSound;
     [SerializeField]
@@ -18,6 +18,10 @@ public class GameController : MonoBehaviour
     AudioClip popUpSound;
     public int level;
     bool hasTypingSoundPlayed;
+    [SerializeField]
+    GameObject door1;
+    [SerializeField]
+    GameObject door2;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +38,18 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
             {
-                MenuAnimator.SetBool("TypingCode", true);
-                gameObject.GetComponent<AudioSource>().clip = beginEnterPasswordSound;
+                if(level==1)
+                {
+                    MenuAnimator.SetBool("TypingCode", true);
+                }
+                if(MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("Identity_popup"))
+                {
+                    MenuAnimator.SetBool("Lvl2Begin", true);
+                    isInMenus = false;
+                    isGamePlaying = true;
+                    door1.SetActive(false);
+                }
+                gameObject.GetComponent<AudioSource>().clip = buttonPressedSound;
                 gameObject.GetComponent<AudioSource>().Play();
             }
             if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("Title_validation"))
