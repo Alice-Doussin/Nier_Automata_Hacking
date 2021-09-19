@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrangeShotController : MonoBehaviour
+public class PurpleShotController : MonoBehaviour
 {
     [SerializeField]
     float speed;
@@ -34,11 +34,7 @@ public class OrangeShotController : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GotHit();
 
         }
-        if (other.gameObject.tag == "PlayerShot")
-        {
 
-            Destroy(gameObject);
-        }
         if (other.gameObject.tag == "DestructibleWall")
         {
 

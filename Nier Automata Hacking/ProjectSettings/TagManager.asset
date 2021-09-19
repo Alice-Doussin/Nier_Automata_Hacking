@@ -8,6 +8,8 @@ TagManager:
   - OrangeShot
   - PurpleShot
   - Core
+  - DestructibleWall
+  - IndestructibleWall
   layers:
   - Default
   - TransparentFX

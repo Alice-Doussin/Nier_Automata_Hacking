@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 90446601744534987}
   - component: {fileID: 90446601744534986}
   - component: {fileID: 90446601744534985}
-  - component: {fileID: 90446601744534998}
   - component: {fileID: 90446601744534997}
   - component: {fileID: 90446601744534984}
   - component: {fileID: 4649445703098918897}
+  - component: {fileID: 4495856756050557929}
   m_Layer: 0
-  m_Name: OrangeShot
-  m_TagString: OrangeShot
+  m_Name: PurpleShot
+  m_TagString: PurpleShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34012,7 +34012,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a614dc21a89b1cd46875689e29307454, type: 2}
+  - {fileID: 2100000, guid: 8737752760e17424db0593c1995249fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34042,20 +34042,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90446601744534991}
   m_Mesh: {fileID: 0}
---- !u!114 &90446601744534998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90446601744534991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc2f67a9f33a01d4284e1d909402a53f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 500
-  timeToDestroy: 8
 --- !u!54 &90446601744534997
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34181,3 +34167,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4495856756050557929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90446601744534991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fc099d5c6b45e4f85633b73c04b3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
+  timeToDestroy: 8

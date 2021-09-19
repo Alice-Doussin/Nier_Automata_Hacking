@@ -12,22 +12,45 @@ public class DestructibleWall : MonoBehaviour
     AudioClip WallHitSound;
     [SerializeField]
     AudioClip WallExplodeSound;
+    bool isDestroyed;
+    float hitCooldown;
+    [SerializeField]
+    float hitCooldownMax;
+    [SerializeField]
+    GameObject hitWhite;
+    [SerializeField]
+    float feedbackCooldownMax;
+    float feedbackCooldown;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isDestroyed = false;
+        hitCooldown = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (lives <= 0)
+        if(!isDestroyed)
         {
-            gameObject.GetComponent<AudioSource>().clip = WallExplodeSound;
-            gameObject.GetComponent<AudioSource>().Play();
-            Destroy(gameObject, gameObject.GetComponent<AudioSource>().clip.length - 0.7f);
+            if (lives <= 0)
+            {
+                /*gameObject.GetComponent<AudioSource>().clip = WallExplodeSound;
+                gameObject.GetComponent<AudioSource>().Play();*/
+                Destroy(gameObject);
+                isDestroyed = true;
+            }
+
+            hitCooldown -= Time.deltaTime;
+            feedbackCooldown -= Time.deltaTime;
+
+            if (feedbackCooldown <= 0)
+            {
+                hitWhite.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,11 +59,26 @@ public class DestructibleWall : MonoBehaviour
         {
             if (other.gameObject.tag == "PlayerShot")
             {
-                lives--;
-                gameObject.GetComponent<AudioSource>().clip = WallHitSound;
-                gameObject.GetComponent<AudioSource>().Play();
+                GotHit();
+                
                 
             }
+        }
+
+    }
+
+    public void GotHit()
+    {
+
+        if (hitCooldown <= 0)
+        {
+            lives--;
+            hitCooldown = hitCooldownMax;
+            feedbackCooldown = feedbackCooldownMax;
+            gameObject.GetComponent<AudioSource>().clip = WallHitSound;
+            gameObject.GetComponent<AudioSource>().Play();
+            hitWhite.GetComponent<MeshRenderer>().enabled = true;
+
         }
 
     }

@@ -81,11 +81,7 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(rightPart);
             }
-            if (lives <= 0)
-            {
-                Destroy(frontPart);
 
-            }
         }
        
     }
@@ -96,16 +92,10 @@ public class PlayerController : MonoBehaviour
         {
             lives--;
             hitCooldown = hitCooldownMax;
-            if(lives<=0)
-            {
-                gameObject.GetComponent<AudioSource>().clip = PlayerDeathSound;
-                gameObject.GetComponent<AudioSource>().Play();
-            }
-            else
-            {
-                gameObject.GetComponent<AudioSource>().clip = PlayerHitSound;
-                gameObject.GetComponent<AudioSource>().Play();
-            }
+
+            gameObject.GetComponent<AudioSource>().clip = PlayerHitSound;
+            gameObject.GetComponent<AudioSource>().Play();
+            
             
         }
         
