@@ -26,5 +26,9 @@ public class PlayerShot : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.gameObject.tag == "IndestructibleWall")
+        {
+            Destroy(gameObject);
+        }
     }
 }

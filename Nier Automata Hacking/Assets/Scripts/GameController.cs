@@ -49,6 +49,13 @@ public class GameController : MonoBehaviour
                     isGamePlaying = true;
                     door1.SetActive(false);
                 }
+                if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("ProjetNierAutomata_popup"))
+                {
+                    MenuAnimator.SetBool("Lvl3Begin", true);
+                    isInMenus = false;
+                    isGamePlaying = true;
+                    door2.SetActive(false);
+                }
                 gameObject.GetComponent<AudioSource>().clip = buttonPressedSound;
                 gameObject.GetComponent<AudioSource>().Play();
             }
@@ -77,6 +84,14 @@ public class GameController : MonoBehaviour
         if(level==2)
         {
             MenuAnimator.SetBool("Lvl1Finished", true);
+        }
+        if (level == 3)
+        {
+            MenuAnimator.SetBool("Lvl2Finished", true);
+        }
+        if (level == 4)
+        {
+            MenuAnimator.SetBool("Lvl3Finished", true);
         }
     }
     

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoreController : MonoBehaviour
+public class CoreLvl3Controller : MonoBehaviour
 {
     [SerializeField]
     float shotCooldownMax;
     float shotCooldown;
     [SerializeField]
-    GameObject OrangeShot;
-    [SerializeField]
     GameObject PurpleShot;
     [SerializeField]
-    GameObject CoreSpawner;
+    GameObject CoreSpawner1;
+    [SerializeField]
+    GameObject CoreSpawner2;
     [SerializeField]
     float rotationSpeed;
     [SerializeField]
@@ -32,7 +32,6 @@ public class CoreController : MonoBehaviour
     void Start()
     {
         curYRot = gameObject.GetComponent<Rigidbody>().rotation.y;
-        hasGoneToNextLvl = false;
     }
 
     // Update is called once per frame
@@ -43,10 +42,14 @@ public class CoreController : MonoBehaviour
             
             if (shotCooldown <= 0)
             {
-                Instantiate(OrangeShot, CoreSpawner.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
+
+                Instantiate(PurpleShot, CoreSpawner1.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
+                Instantiate(PurpleShot, CoreSpawner1.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation * Quaternion.Euler(new Vector3(0, 180, 0)));
+
                 shotCooldown = shotCooldownMax;
             }
             shotCooldown -= Time.deltaTime;
+            
             curYRot += rotationSpeed * Time.deltaTime;
             gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(new Vector3(0, curYRot, 0)));
 
@@ -56,12 +59,11 @@ public class CoreController : MonoBehaviour
                 gameObject.GetComponent<AudioSource>().Play();
                 gameController.GetComponent<GameController>().isGamePlaying = false;
                 gameController.GetComponent<GameController>().isInMenus = true;
-                if(hasGoneToNextLvl==false)
+                if (hasGoneToNextLvl == false)
                 {
                     gameController.GetComponent<GameController>().GoToNextLevel();
                     hasGoneToNextLvl = true;
                 }
-                
                 Destroy(gameObject,gameObject.GetComponent<AudioSource>().clip.length-0.7f);
             }
         }
