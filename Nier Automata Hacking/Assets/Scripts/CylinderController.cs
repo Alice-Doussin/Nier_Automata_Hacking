@@ -6,7 +6,10 @@ public class CylinderController : MonoBehaviour
 {
     [SerializeField]
     float shotCooldownMax;
+    [SerializeField]
+    float shotCooldownMin;
     float shotCooldown;
+    float shotCooldownRand;
     [SerializeField]
     GameObject PurpleShot;
     [SerializeField]
@@ -43,6 +46,7 @@ public class CylinderController : MonoBehaviour
     void Start()
     {
         curYRot = gameObject.GetComponent<Rigidbody>().rotation.y;
+        shotCooldownRand = Random.Range(shotCooldownMin,shotCooldownMax);
     }
 
     // Update is called once per frame
@@ -57,7 +61,7 @@ public class CylinderController : MonoBehaviour
                 Instantiate(PurpleShot, Spawner2.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation * Quaternion.Euler(new Vector3(0,90,0)));
                 Instantiate(PurpleShot, Spawner3.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation * Quaternion.Euler(new Vector3(0, 180, 0)));
                 Instantiate(PurpleShot, Spawner4.GetComponent<Transform>().position, gameObject.GetComponent<Rigidbody>().rotation);
-                shotCooldown = shotCooldownMax;
+                shotCooldown = shotCooldownRand;
             }
             shotCooldown -= Time.deltaTime;
             curYRot += rotationSpeed * Time.deltaTime;

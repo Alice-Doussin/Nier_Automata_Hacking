@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotCooldownMax: 1.2
+  shotCooldownMin: 0.8
   PurpleShot: {fileID: 90446601744534991, guid: 65767ba71d2c46d48a4b5f4adc9f73bd, type: 3}
   Spawner1: {fileID: 914197799217924328}
   Spawner2: {fileID: 914197799393779936}

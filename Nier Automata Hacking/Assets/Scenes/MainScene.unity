@@ -6795,7 +6795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e81775fde90e3644884bbbb854c6d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotCooldownMax: 0.1
+  shotCooldownMax: 0.2
   OrangeShot: {fileID: 90446601744534991, guid: b7df4bc7f86979944b9feeb2f9b652d7, type: 3}
   PurpleShot: {fileID: 90446601744534991, guid: 65767ba71d2c46d48a4b5f4adc9f73bd, type: 3}
   CoreSpawner: {fileID: 1291940341}
@@ -9163,7 +9163,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2520
+  m_Name: pb_Mesh47548
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
