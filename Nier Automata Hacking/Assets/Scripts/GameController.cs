@@ -22,6 +22,10 @@ public class GameController : MonoBehaviour
     GameObject door1;
     [SerializeField]
     GameObject door2;
+    [SerializeField]
+    float timeUntilpopupSoundMax;
+    float timeUntilPopupSound;
+    bool startPopupSoundCountdown;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,7 @@ public class GameController : MonoBehaviour
         isInMenus = true;
         level = 1;
         hasTypingSoundPlayed = false;
+        timeUntilPopupSound = timeUntilpopupSoundMax;
     }
 
     // Update is called once per frame
@@ -48,6 +53,7 @@ public class GameController : MonoBehaviour
                     isInMenus = false;
                     isGamePlaying = true;
                     door1.SetActive(false);
+                    
                 }
                 if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("ProjetNierAutomata_popup"))
                 {
@@ -55,10 +61,20 @@ public class GameController : MonoBehaviour
                     isInMenus = false;
                     isGamePlaying = true;
                     door2.SetActive(false);
+                    
                 }
+
+                
                 gameObject.GetComponent<AudioSource>().clip = buttonPressedSound;
                 gameObject.GetComponent<AudioSource>().Play();
             }
+
+            if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("FinishLevel") || MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("FinishLevel 2") || MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("FinishLevel 3"))
+            {
+                startPopupSoundCountdown = true;
+                timeUntilPopupSound = timeUntilpopupSoundMax;
+            }
+
             if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("Title_validation"))
             {
                 if(hasTypingSoundPlayed==false)
@@ -70,6 +86,20 @@ public class GameController : MonoBehaviour
                 
             }
 
+            if(startPopupSoundCountdown)
+            {
+                timeUntilPopupSound -= Time.deltaTime;
+            }
+            if(timeUntilPopupSound<=0)
+            {
+                if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("Identity_popup") || MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("ProjetNierAutomata_popup") || MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("Capacites_popup"))
+                {
+                    gameObject.GetComponent<AudioSource>().clip = popUpSound;
+                    gameObject.GetComponent<AudioSource>().Play();
+                    startPopupSoundCountdown = false;
+                    timeUntilPopupSound = timeUntilpopupSoundMax;
+                }
+            }
         }
         
         if (MenuAnimator.GetCurrentAnimatorStateInfo(0).IsName("BeginHackingText"))
