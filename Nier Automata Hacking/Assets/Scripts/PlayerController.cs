@@ -32,9 +32,14 @@ public class PlayerController : MonoBehaviour
     AudioClip PlayerHitSound;
     [SerializeField]
     AudioClip PlayerDeathSound;
+    private Animator anim;
+    public ParticleSystem hitparticles;
+    
+    
     void Start()
     {
         shotCooldown = 0;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -95,8 +100,10 @@ public class PlayerController : MonoBehaviour
 
             gameObject.GetComponent<AudioSource>().clip = PlayerHitSound;
             gameObject.GetComponent<AudioSource>().Play();
-            
-            
+            hitparticles.Play();
+            anim.Play("player_hitted_anim", 0, 0.25f);
+
+
         }
         
     }
