@@ -6,6 +6,7 @@ public class VoiceLinesManager : MonoBehaviour
 {
     [SerializeField]
     List<AudioClip> VoiceLines;
+    [SerializeField]
     int index;
     [SerializeField]
     float lineCooldownMax;
@@ -26,6 +27,15 @@ public class VoiceLinesManager : MonoBehaviour
             {
                 SayLine();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.JoystickButton6))
+        {
+            gameObject.GetComponent<AudioSource>().Stop();
+            if(index>0)
+            {
+                index--;
+            }
+            
         }
 
         lineCooldown -= Time.deltaTime;
