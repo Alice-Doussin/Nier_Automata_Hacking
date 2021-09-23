@@ -6225,7 +6225,6 @@ MonoBehaviour:
   VoiceLines:
   - {fileID: 8300000, guid: c2c37e90ecb6f494b9a7bcbf0fa0a09f, type: 3}
   - {fileID: 8300000, guid: 96729ddf5b57f194fb85274c5676ab7e, type: 3}
-  - {fileID: 8300000, guid: e41b5989ca8de8c4e94f783f96ad3be6, type: 3}
   - {fileID: 8300000, guid: e790324e670fff44188e44bd32656a46, type: 3}
   - {fileID: 8300000, guid: 62bf2bb6edea2734fb1ace8a9db55863, type: 3}
   - {fileID: 8300000, guid: c78dbc7f81b1b5e41ac3f0f3354def81, type: 3}
